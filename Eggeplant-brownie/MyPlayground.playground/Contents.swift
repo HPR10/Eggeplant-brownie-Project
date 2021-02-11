@@ -1,5 +1,6 @@
 import UIKit
 
+
 let nome: String = "Pão"
 let idade: Int = 29
 let calorias: Double = 7.50
@@ -37,7 +38,8 @@ for caloria in totalCalorias{
     print(caloria)
 }
 
-
+// Arrays e Funções
+ 
 let totalDeCalorias = [50.5,24]
 
 func todasCalorias(totalDeCalorias: [Double]) -> Double{
@@ -50,4 +52,67 @@ func todasCalorias(totalDeCalorias: [Double]) -> Double{
 }
 let total = todasCalorias(totalDeCalorias: [55.5, 400, 80.5])
 print(total)
+ 
+// Criando uma classe
+class Refeicao {
+    let nome: String = "Churros"
+    let felicidade: String = "5"
+}
 
+// Instanciando uma classe
+let refeicao = Refeicao()
+print(refeicao.nome)
+
+// Classe 2
+class Refeicao2 {
+    let nome: String = "Macarrão"
+    let felicidade: String = "4"
+}
+
+var refeicao2 = Refeicao()
+print(refeicao2.nome)
+
+
+// variáveis Optional
+
+class Refeicao3 {
+    var nome: String? = nil
+    let felicidade: String? = nil     // O ? transforma variáveis com valores opcionais.
+}
+let refeicao3 = Refeicao3()
+refeicao3.nome = "Feijão"
+
+// Forced unwrap - O ! extrai o valor de uma variável opcionale imprime corretamente. Caso a variável não tenha valor o aplicativo crash.
+print(refeicao3.nome!)
+
+ 
+//// Boas praticas para extrair valores de opcionais
+//if let nome = refeicao.nome {
+//    print(nome)
+//}
+//
+//// Guard let consegue acessar uma variável fora do seu escopo e o if let só o escopo local
+//func exibeNomeDaRefeicao() {
+//    if let nome = refeicao.nome{
+//        print(nome)
+//    }
+//    guard let nome = refeicao.nome else {
+//        return
+//        print(nome)
+//    }
+//}
+//exibeNomeDaRefeicao()
+
+
+//let numero = Int("5")
+//if let n  = numero{
+//    print(n)
+//} else {
+//    print("Erro ao converter o número!!")
+//}
+
+class Pessoa {
+  var nome:String?
+}
+let pedro = Pessoa()
+print(pedro.nome)
