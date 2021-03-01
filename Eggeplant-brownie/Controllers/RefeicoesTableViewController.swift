@@ -27,16 +27,23 @@ class RefeicoesTableViewController: UITableViewController{
         return celula
     }
     
-    func add(_ refeicao: Refeicao){
-        print("Método add: \(refeicao.nome)") // teste de chamada de método no console
+    func add(_ refeicao: Refeicao){         // oculta o parâmetro para melhor legibilidade do código é opcional.
+        print("Método add: \(refeicao.nome)") // teste de chamada de método no console.
         refeicoes.append(refeicao)
-        tableView.reloadData()
+        tableView.reloadData()  // Atualiza a tabela na tela quando um item seja adicionado.
     }
     
+    // método que se prepara para exibir a proxima tela
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let viewcontroller = segue.destination as? ViewController{
-            viewcontroller.TableViewController = self
+        // Identificador de segue
+        if segue.identifier == "adicionar" {
+            if let viewcontroller = segue.destination as? ViewController{
+                viewcontroller.TableViewController = self
+            }
+            
         }
-        
     }
+
 }
+        
+        
