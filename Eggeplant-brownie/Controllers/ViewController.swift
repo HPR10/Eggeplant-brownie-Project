@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var TableViewController: RefeicoesTableViewController?  //variáveis opcional
+    
     @IBOutlet var nometextfield: UITextField!         //Force On App
     @IBOutlet var felicidadetextfield: UITextField!
     
@@ -37,5 +39,10 @@ class ViewController: UIViewController {
         let refeicao = Refeicao(nome: nomeDaRefeicao, felicidade: felicidade)
         
         print("Comi \(refeicao.nome) e fiquei com felicidade:\(refeicao.felicidade)")
+        
+        TableViewController?.add(refeicao)
+        
+        // Retorna pra essa tela, quando a tela ligada a essa for encerrada
+        navigationController?.popViewController(animated: true)
     }
 }
