@@ -7,9 +7,13 @@
 
 import UIKit
 
+protocol AdicionaRefeicaoDelegate {
+    func add(_ refeicao: Refeicao) // apenas a casquinha do método, não como é implementado
+}
+
 class ViewController: UIViewController {
     
-    var TableViewController: RefeicoesTableViewController?  //variáveis opcional
+    var delegate: AdicionaRefeicaoDelegate?  //variáveis opcional
     
     @IBOutlet var nometextfield: UITextField!         //Force On App
     @IBOutlet var felicidadetextfield: UITextField!
@@ -40,7 +44,7 @@ class ViewController: UIViewController {
         
         print("Comi \(refeicao.nome) e fiquei com felicidade:\(refeicao.felicidade)")
         
-        TableViewController?.add(refeicao)
+        delegate?.add(refeicao)
         
         // Retorna pra essa tela, quando a tela ligada a essa for encerrada
         navigationController?.popViewController(animated: true)

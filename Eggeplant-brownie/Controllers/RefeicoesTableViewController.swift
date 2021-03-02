@@ -7,7 +7,7 @@
 
 import UIKit // Biblioteca de interface do usuário.
 
-class RefeicoesTableViewController: UITableViewController{
+class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDelegate{
     
     var refeicoes = [Refeicao(nome: "Presunto", felicidade: 3),
                  Refeicao(nome: "Mortadela", felicidade: 4),
@@ -38,7 +38,7 @@ class RefeicoesTableViewController: UITableViewController{
         // Identificador de segue
         if segue.identifier == "adicionar" {
             if let viewcontroller = segue.destination as? ViewController{
-                viewcontroller.TableViewController = self
+                viewcontroller.delegate = self
             }
             
         }
