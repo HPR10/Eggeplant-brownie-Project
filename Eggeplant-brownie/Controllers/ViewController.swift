@@ -11,12 +11,49 @@ protocol AdicionaRefeicaoDelegate {
     func add(_ refeicao: Refeicao) // apenas a casquinha do método, não como é implementado
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+ 
+    
+    // MARK: - Atributos
     
     var delegate: AdicionaRefeicaoDelegate?  //variáveis opcional
+    //var itens: [String] = ["Molho de tomate", "Morango", "Biscoito"]
+    
+    var itens: [Item] = [ Item(nome: "Fubá", calorias: 50),
+                          Item(nome: "Bolo", calorias: 25),
+                          Item(nome: "Vodka", calorias: 150),
+                          Item(nome: "Biscoito", calorias: 350)]
+    
+    // MARK: - IBOutlets
     
     @IBOutlet var nometextfield: UITextField!         //Force On App
     @IBOutlet var felicidadetextfield: UITextField!
+    
+    // MARK: - UITableViewDataSource
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return itens.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let celula = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let linhadatabela = indexPath.row
+        let  item = itens[linhadatabela]
+        celula.textLabel?.text = item.nome
+        return celula
+    }
+    
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let celula = tableView.cellForRow(at: indexPath) else { return }
+        
+        if celula.accessoryType == .none {
+            celula.accessoryType = .checkmark
+        } else {
+            celula.accessoryType = .none
+        }
+    }
+    // MARK: - IBActions
     
     @IBAction func Adicionar(_ sender: Any) {
         
