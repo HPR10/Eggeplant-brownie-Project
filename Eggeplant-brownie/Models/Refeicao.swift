@@ -11,13 +11,14 @@ class Refeicao: NSObject {
     // MARK: - Classe
         let nome: String
         let felicidade: Int
-        let itens: Array<Item> = []             // Criando uma lista vazia
+        var itens: Array<Item> = []             // Criando uma lista vazia
 
         
     // MARK: - Método init
-        init (nome:String, felicidade: Int) {
+    init (nome:String, felicidade: Int, itens: [Item] = []) {
             self.nome = nome
             self.felicidade = felicidade
+        self.itens = itens
         }
         
     // MARK: - Métodos

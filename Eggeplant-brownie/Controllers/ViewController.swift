@@ -17,12 +17,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - Atributos
     
     var delegate: AdicionaRefeicaoDelegate?  //variáveis opcional
-    //var itens: [String] = ["Molho de tomate", "Morango", "Biscoito"]
+ 
     
-    var itens: [Item] = [ Item(nome: "Fubá", calorias: 50),
+    var itens: [Item] = [Item(nome: "Fubá", calorias: 50),
                           Item(nome: "Bolo", calorias: 25),
                           Item(nome: "Vodka", calorias: 150),
                           Item(nome: "Biscoito", calorias: 350)]
+    
+    var itensSelecionados: [Item] = []
     
     // MARK: - IBOutlets
     
@@ -49,8 +51,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         if celula.accessoryType == .none {
             celula.accessoryType = .checkmark
+            
+            let linhaDaTabela = indexPath.row
+            itensSelecionados.append(itens[linhaDaTabela])
+
         } else {
             celula.accessoryType = .none
+            
+            let item = itens[indexPath.row]
+            if let position = itensSelecionados.firstIndex(of: item){
+                itensSelecionados.remove(at: position)
+                
+                // Teste
+                
+                for itensSelecionado in itensSelecionados {
+                    print(itensSelecionado.nome)
+                }
+                
+            }
+            
         }
     }
     // MARK: - IBActions
@@ -77,7 +96,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return
         }
  
-        let refeicao = Refeicao(nome: nomeDaRefeicao, felicidade: felicidade)
+        let refeicao = Refeicao(nome: nomeDaRefeicao, felicidade: felicidade, itens:[])
+        
+        
         
         print("Comi \(refeicao.nome) e fiquei com felicidade:\(refeicao.felicidade)")
         
